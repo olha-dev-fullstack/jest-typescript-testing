@@ -134,11 +134,15 @@ describe("Server test suite", () => {
     );
   });
 
-  it("should stop the server if started", async () => {
+  it('should stop the server if started',async ()=>{
+    serverMock.close.mockImplementationOnce((cb: Function)=>{
+        cb();
+    })
+ 
     await sut.startServer();
-
+ 
     await sut.stopServer();
-
+ 
     expect(serverMock.close).toHaveBeenCalledTimes(1);
-  });
+})
 });
