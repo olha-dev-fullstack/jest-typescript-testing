@@ -1,23 +1,37 @@
 export type stringInfo = {
-    lowerCase: string;
-    upperCase: string;
-    characters: string[];
-    length: number;
-    extraInfo: Object | undefined;
-  };
+  lowerCase: string;
+  upperCase: string;
+  characters: string[];
+  length: number;
+  extraInfo: Object | undefined;
+};
 
-  type LoggerServiceCallback = (arg: string) => void;
-  
-  export function calculateComplexity(stringInfo: stringInfo) {
-    return Object.keys(stringInfo.extraInfo).length * stringInfo.length
+type LoggerServiceCallback = (arg: string) => void;
+
+export function calculateComplexity(stringInfo: stringInfo) {
+  return Object.keys(stringInfo.extraInfo).length * stringInfo.length;
+}
+
+export function toUpperCaseWithCb(arg: string, callBack: Function) {
+  if (!arg) {
+    callBack("Invalid argument!");
+    return;
   }
 
-  export function toUpperCaseWithCb(arg: string, callBack: Function) {
-    if(!arg) {
-        callBack('Invalid argument!');
-        return;
-    }
+  callBack(`called function with ${arg}`);
+  return arg.toUpperCase();
+}
 
-    callBack(`called function with ${arg}`)
-    return arg.toUpperCase()
+export class OtherStringUtils {
+  public toUpperCase(arg: string) {
+    return arg.toUpperCase();
   }
+
+  public logString(arg: string) {
+    console.log(arg);
+  }
+
+  public callExternalService() {
+    console.log("Calling external service!!!");
+  }
+}
